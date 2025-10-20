@@ -1,7 +1,7 @@
-// app.js — load questions.json, randomize, UI flow: Select -> Check -> Next; Skip works.
+// app.js — improved error handling, schema checks and fallback
 let score = 0;
 let questions = [];
-let pool = []; // shuffled
+let pool = [];
 let current = null;
 let selectedOption = null;
 
@@ -15,20 +15,85 @@ const skipBtn = document.getElementById('skipBtn');
 const bunny = document.getElementById('bunny');
 const bunnyWrap = document.getElementById('bunnyWrap');
 
-// load questions.json (file at repo root)
-fetch('questions.json')
-  .then(r => r.json())
-  .then(data => {
-    questions = data;
-    pool = shuffle([...questions]); // random order
-    loadNextQuestion();
+// create or reuse a status area so user sees what's happening
+let statusEl = document.getElementById('status');
+if(!statusEl){
+  statusEl = document.createElement('div');
+  statusEl.id = 'status';
+  statusEl.style.margin = '8px 0 12px';
+  statusEl.style.fontSize = '.95rem';
+  statusEl.style.color = '#666';
+  // put status just above question if possible
+  const card = document.getElementById('questionCard');
+  if(card) card.insertBefore(statusEl, card.firstChild.nextSibling);
+  else document.body.prepend(statusEl);
+}
+
+status('Initializing...');
+
+// Try to load questions.json from repo root
+fetch('questions.json', {cache: "no-store"})
+  .then(resp => {
+    if(!resp.ok) {
+      throw new Error(`Network response not OK (status ${resp.status})`);
+    }
+    // clone text to help debug invalid JSON (shows snippet)
+    return resp.text().then(text => ({text, resp}));
+  })
+  .then(obj => {
+    try {
+      const data = JSON.parse(obj.text);
+      // validate structure quickly
+      if(!Array.isArray(data) || data.length === 0) throw new Error('Parsed JSON is not a non-empty array.');
+      const invalid = data.find(q => !q.question || !q.options || !q.correct_option);
+      if(invalid) throw new Error('One or more questions missing required fields (question/options/correct_option).');
+      questions = data;
+      pool = shuffle([...questions]);
+      status(`Loaded ${questions.length} questions.`);
+      loadNextQuestion();
+    } catch(parseErr) {
+      console.error('JSON parse/validation error:', parseErr);
+      status('Failed to parse/validate questions.json — using fallback questions. See console for details.');
+      // fallback to sample
+      fallbackQuestions(parseErr);
+    }
   })
   .catch(err => {
-    questionEl.textContent = 'Failed to load questions';
-    console.error(err);
+    console.error('Fetch error for questions.json:', err);
+    status('Could not fetch questions.json — using fallback questions. Check file path and repo settings.');
+    fallbackQuestions(err);
   });
 
-// shuffle array (Fisher-Yates)
+// ---------- Helper / UI functions ----------
+
+function status(msg){
+  statusEl.textContent = msg;
+  console.log('[STATUS]', msg);
+}
+
+function fallbackQuestions(err){
+  // err may include message; keep it in console
+  console.log('Fallback triggered due to:', err);
+  questions = [
+    {
+      question: "Sample: What is 2 + 2?",
+      options: {A: "3", B: "4", C: "5", D: "22"},
+      correct_option: "B",
+      explanation: "2 + 2 equals 4."
+    },
+    {
+      question: "Sample: Which color mixes to make green?",
+      options: {A: "Red + Blue", B: "Blue + Yellow", C: "Red + Yellow", D: "Black + White"},
+      correct_option: "B",
+      explanation: "Blue + Yellow = Green."
+    }
+  ];
+  pool = shuffle([...questions]);
+  status('Using 2 fallback questions. Fix questions.json to use your real pool.');
+  loadNextQuestion();
+}
+
+// shuffle (Fisher-Yates)
 function shuffle(arr){
   for(let i = arr.length-1; i>0; i--){
     const j = Math.floor(Math.random()*(i+1));
@@ -45,17 +110,39 @@ function loadNextQuestion(){
   checkBtn.disabled = true;
 
   if(pool.length === 0){
-    // refill if needed (or show finished)
     pool = shuffle([...questions]);
+    status('Re-shuffled question pool.');
+  } else {
+    status(`Questions remaining: ${pool.length}`);
   }
+
   current = pool.shift();
+  if(!current){
+    questionEl.textContent = 'No question available';
+    status('No question loaded.');
+    return;
+  }
   renderQuestion(current);
 }
 
 function renderQuestion(q){
-  questionEl.textContent = q.question;
+  questionEl.textContent = q.question || 'Question missing text';
   choicesWrap.innerHTML = '';
-  Object.entries(q.options).forEach(([key, text])=>{
+
+  // if options is not object, try array or fallback
+  const opts = q.options;
+  if(!opts || (typeof opts !== 'object')) {
+    console.warn('Invalid options for question:', q);
+    // render a single disabled item so UI doesn't break
+    const btn = document.createElement('button');
+    btn.className = 'choice';
+    btn.disabled = true;
+    btn.textContent = 'Invalid options';
+    choicesWrap.appendChild(btn);
+    return;
+  }
+
+  Object.entries(opts).forEach(([key, text])=>{
     const btn = document.createElement('button');
     btn.className = 'choice';
     btn.type = 'button';
@@ -67,9 +154,7 @@ function renderQuestion(q){
   });
 }
 
-// when user picks an option
 function onSelectOption(btn){
-  // clear previous selection visual
   document.querySelectorAll('.choice').forEach(c=>{
     c.setAttribute('aria-checked','false');
   });
@@ -78,31 +163,36 @@ function onSelectOption(btn){
   checkBtn.disabled = false;
 }
 
-// Check / Next button behavior
 checkBtn.addEventListener('click', ()=>{
   if(checkBtn.textContent === 'Check answer'){
-    if(!selectedOption) return;
+    if(!selectedOption){
+      feedback.textContent = 'Select an option first.';
+      return;
+    }
     evaluateAnswer();
   } else {
     // Next
     loadNextQuestion();
-    // reset bunny to neutral
     setBunny('assets/bunny-neutral.png');
   }
 });
 
-// Skip behavior
 skipBtn.addEventListener('click', ()=> {
-  // small visual reset and go next
   feedback.textContent = 'Skipped';
   explanationEl.textContent = '';
   setTimeout(()=> loadNextQuestion(), 220);
 });
 
-// evaluate current selection
 function evaluateAnswer(){
   disableChoices(true);
   const correct = current.correct_option;
+  if(typeof correct === 'undefined' || correct === null){
+    feedback.textContent = 'This question has no correct_option defined.';
+    console.error('Missing correct_option for question:', current);
+    checkBtn.textContent = 'Next';
+    return;
+  }
+
   if(selectedOption === correct){
     score = Math.max(0, score + 10);
     feedback.textContent = 'Correct!';
@@ -121,19 +211,31 @@ function evaluateAnswer(){
   }
   updateScore();
   checkBtn.textContent = 'Next';
-  // cleanup animations after short time
+
   setTimeout(()=> {
     bunny.classList.remove('jump','sadShake');
     bunnyWrap.classList.remove('bunny-happy-glow','bunny-sad-dim');
     scoreEl.classList.remove('scorePulse');
+    disableChoices(false);
   }, 700);
 }
 
 function updateScore(){ scoreEl.textContent = `Score: ${score}`; }
 
 function setBunny(src){
-  // simple src set; GitHub Pages serves /assets/
-  bunny.src = src;
+  // defensive: try to load and fallback to neutral if image 404
+  const img = new Image();
+  img.onload = ()=> { bunny.src = src; };
+  img.onerror = ()=> {
+    console.warn('Failed to load bunny asset:', src);
+    // if neutral exists, use it, otherwise remove src
+    if(!src.endsWith('bunny-neutral.png')){
+      setBunny('assets/bunny-neutral.png');
+    } else {
+      bunny.removeAttribute('src');
+    }
+  };
+  img.src = src;
 }
 
 function disableChoices(dis){
