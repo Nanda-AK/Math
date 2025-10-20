@@ -1,6 +1,4 @@
-:root{
-  --good:#28a745; --bad:#dc3545; --bg:#f6f8fa; --card:#fff;
-}
+:root{--good:#28a745;--bad:#dc3545;--bg:#f6f8fa;--card:#fff}
 *{box-sizing:border-box}
 body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);margin:0;padding:20px;color:#111}
 header{display:flex;justify-content:flex-end;margin-bottom:12px}
@@ -19,6 +17,7 @@ header{display:flex;justify-content:flex-end;margin-bottom:12px}
 .secondary{background:#fff;padding:10px 14px;border-radius:8px;border:1px solid #ddd;cursor:pointer}
 .feedback{margin-top:12px;min-height:22px;font-weight:600}
 .explanation{margin-top:6px;color:#444;font-size:.95rem}
+.attempts-info{margin-top:8px;color:#555;font-size:.9rem}
 
 /* Bunny area */
 .bunny-wrap{width:260px;height:260px;background:linear-gradient(#fff,#f8fbff);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.06);position:relative;overflow:hidden}
