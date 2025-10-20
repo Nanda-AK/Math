@@ -1,0 +1,14 @@
+/* styles.css (minimal) */
+:root{--good:#28a745;--bad:#dc3545;--bg:#f6f8fa}
+body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);margin:0;padding:20px}
+header{display:flex;justify-content:flex-end;margin-bottom:12px}
+.card{max-width:520px;margin:0 auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.choice{padding:12px;border-radius:8px;border:1px solid #ddd;background:#fafafa;cursor:pointer}
+.choice:focus{outline:2px solid #005fcc}
+.scorePulse{animation:scorePulse .6s}
+@keyframes scorePulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+.happy{animation:happyPop .6s}
+@keyframes happyPop{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+.sad{animation:sadShake .5s}
+@keyframes sadShake{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}100%{transform:translateX(0)}}
