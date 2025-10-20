@@ -113,7 +113,7 @@ function loadNextQuestion(){
     pool = shuffle([...questions]);
     status('Re-shuffled question pool.');
   } else {
-    status(`Questions remaining: ${pool.length}`);
+    status(`Questions remaining _Branch_1: ${pool.length}`);
   }
 
   current = pool.shift();
