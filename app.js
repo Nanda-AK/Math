@@ -1,9 +1,11 @@
-// app.js — improved error handling, schema checks and fallback
+// app.js — hint button + attempts_allowed awareness + defensive loading
 let score = 0;
 let questions = [];
 let pool = [];
 let current = null;
 let selectedOption = null;
+let attemptsLeft = null;
+let hintUsed = false;
 
 const scoreEl = document.getElementById('score');
 const questionEl = document.getElementById('question');
@@ -12,10 +14,12 @@ const feedback = document.getElementById('feedback');
 const explanationEl = document.getElementById('explanation');
 const checkBtn = document.getElementById('checkBtn');
 const skipBtn = document.getElementById('skipBtn');
+const hintBtn = document.getElementById('hintBtn');
+const attemptsInfo = document.getElementById('attemptsInfo');
 const bunny = document.getElementById('bunny');
 const bunnyWrap = document.getElementById('bunnyWrap');
 
-// create or reuse a status area so user sees what's happening
+// status area
 let statusEl = document.getElementById('status');
 if(!statusEl){
   statusEl = document.createElement('div');
@@ -23,7 +27,6 @@ if(!statusEl){
   statusEl.style.margin = '8px 0 12px';
   statusEl.style.fontSize = '.95rem';
   statusEl.style.color = '#666';
-  // put status just above question if possible
   const card = document.getElementById('questionCard');
   if(card) card.insertBefore(statusEl, card.firstChild.nextSibling);
   else document.body.prepend(statusEl);
@@ -31,19 +34,15 @@ if(!statusEl){
 
 status('Initializing...');
 
-// Try to load questions.json from repo root
+// load questions.json
 fetch('questions.json', {cache: "no-store"})
   .then(resp => {
-    if(!resp.ok) {
-      throw new Error(`Network response not OK (status ${resp.status})`);
-    }
-    // clone text to help debug invalid JSON (shows snippet)
+    if(!resp.ok) throw new Error(`Network response not OK (status ${resp.status})`);
     return resp.text().then(text => ({text, resp}));
   })
   .then(obj => {
     try {
       const data = JSON.parse(obj.text);
-      // validate structure quickly
       if(!Array.isArray(data) || data.length === 0) throw new Error('Parsed JSON is not a non-empty array.');
       const invalid = data.find(q => !q.question || !q.options || !q.correct_option);
       if(invalid) throw new Error('One or more questions missing required fields (question/options/correct_option).');
@@ -54,7 +53,6 @@ fetch('questions.json', {cache: "no-store"})
     } catch(parseErr) {
       console.error('JSON parse/validation error:', parseErr);
       status('Failed to parse/validate questions.json — using fallback questions. See console for details.');
-      // fallback to sample
       fallbackQuestions(parseErr);
     }
   })
@@ -64,36 +62,19 @@ fetch('questions.json', {cache: "no-store"})
     fallbackQuestions(err);
   });
 
-// ---------- Helper / UI functions ----------
-
-function status(msg){
-  statusEl.textContent = msg;
-  console.log('[STATUS]', msg);
-}
+function status(msg){ statusEl.textContent = msg; console.log('[STATUS]', msg); }
 
 function fallbackQuestions(err){
-  // err may include message; keep it in console
   console.log('Fallback triggered due to:', err);
   questions = [
-    {
-      question: "Sample: What is 2 + 2?",
-      options: {A: "3", B: "4", C: "5", D: "22"},
-      correct_option: "B",
-      explanation: "2 + 2 equals 4."
-    },
-    {
-      question: "Sample: Which color mixes to make green?",
-      options: {A: "Red + Blue", B: "Blue + Yellow", C: "Red + Yellow", D: "Black + White"},
-      correct_option: "B",
-      explanation: "Blue + Yellow = Green."
-    }
+    { question: "Sample: What is 2 + 2?", options: {A:"3",B:"4",C:"5",D:"22"}, correct_option: "B", explanation:"2+2=4", attempts_allowed: 2, hint: "Add two and two." },
+    { question: "Sample: Blue + Yellow = ?", options: {A:"Green",B:"Purple",C:"Orange",D:"Brown"}, correct_option: "A", explanation:"Blue + Yellow = Green.", attempts_allowed: 1, hint: "Think primary colors." }
   ];
   pool = shuffle([...questions]);
   status('Using 2 fallback questions. Fix questions.json to use your real pool.');
   loadNextQuestion();
 }
 
-// shuffle (Fisher-Yates)
 function shuffle(arr){
   for(let i = arr.length-1; i>0; i--){
     const j = Math.floor(Math.random()*(i+1));
@@ -104,10 +85,13 @@ function shuffle(arr){
 
 function loadNextQuestion(){
   selectedOption = null;
+  hintUsed = false;
   feedback.textContent = '';
   explanationEl.textContent = '';
   checkBtn.textContent = 'Check answer';
   checkBtn.disabled = true;
+  hintBtn.disabled = true;
+  attemptsInfo.textContent = '';
 
   if(pool.length === 0){
     pool = shuffle([...questions]);
@@ -122,18 +106,22 @@ function loadNextQuestion(){
     status('No question loaded.');
     return;
   }
+
+  // set attemptsLeft from current or default 1
+  attemptsLeft = (typeof current.attempts_allowed === 'number' && current.attempts_allowed > 0) ? current.attempts_allowed : 1;
   renderQuestion(current);
+  updateAttemptsInfo();
+  // enable hint if question has hint text
+  hintBtn.disabled = !current.hint;
+  hintBtn.textContent = current.hint ? 'Hint' : 'No Hint';
 }
 
 function renderQuestion(q){
   questionEl.textContent = q.question || 'Question missing text';
   choicesWrap.innerHTML = '';
-
-  // if options is not object, try array or fallback
   const opts = q.options;
-  if(!opts || (typeof opts !== 'object')) {
+  if(!opts || (typeof opts !== 'object')){
     console.warn('Invalid options for question:', q);
-    // render a single disabled item so UI doesn't break
     const btn = document.createElement('button');
     btn.className = 'choice';
     btn.disabled = true;
@@ -183,6 +171,14 @@ skipBtn.addEventListener('click', ()=> {
   setTimeout(()=> loadNextQuestion(), 220);
 });
 
+hintBtn.addEventListener('click', ()=> {
+  if(!current || !current.hint) return;
+  feedback.textContent = `Hint: ${current.hint}`;
+  hintUsed = true;
+  hintBtn.disabled = true;
+  // optional: you can penalize hint use here by adjusting points — not implemented
+});
+
 function evaluateAnswer(){
   disableChoices(true);
   const correct = current.correct_option;
@@ -194,48 +190,73 @@ function evaluateAnswer(){
   }
 
   if(selectedOption === correct){
-    score = Math.max(0, score + 10);
+    score = Math.max(0, score + (current.points || 10));
     feedback.textContent = 'Correct!';
     explanationEl.textContent = current.explanation || '';
     setBunny('assets/bunny-happy.png');
     bunny.classList.add('jump');
     bunnyWrap.classList.add('bunny-happy-glow');
     scoreEl.classList.add('scorePulse');
+    updateScore();
+    checkBtn.textContent = 'Next';
   } else {
-    score = Math.max(0, score - 5);
-    feedback.textContent = `Wrong — correct is ${correct}.`;
-    explanationEl.textContent = current.explanation || '';
-    setBunny('assets/bunny-sad.png');
-    bunny.classList.add('sadShake');
-    bunnyWrap.classList.add('bunny-sad-dim');
+    attemptsLeft = (typeof attemptsLeft === 'number') ? attemptsLeft - 1 : 0;
+    // show wrong feedback and attempts remaining
+    if(attemptsLeft > 0){
+      score = Math.max(0, score - (current.points ? Math.ceil((current.points||10)/2) : 5)); // small penalty per wrong try
+      feedback.textContent = `Wrong — ${attemptsLeft} attempt(s) left. Try again.`;
+      explanationEl.textContent = '';
+      setBunny('assets/bunny-sad.png');
+      bunny.classList.add('sadShake');
+      bunnyWrap.classList.add('bunny-sad-dim');
+      updateScore();
+      // allow retry: re-enable choices after short time
+      setTimeout(()=> {
+        disableChoices(false);
+        // allow them to change selection; keep Check enabled only if a selection exists
+        checkBtn.disabled = !selectedOption;
+      }, 600);
+    } else {
+      // attempts exhausted — reveal answer and move to Next
+      score = Math.max(0, score - (current.points || 5));
+      feedback.textContent = `No attempts left. Correct answer: ${correct}.`;
+      explanationEl.textContent = current.explanation || '';
+      setBunny('assets/bunny-sad.png');
+      bunny.classList.add('sadShake');
+      bunnyWrap.classList.add('bunny-sad-dim');
+      updateScore();
+      checkBtn.textContent = 'Next';
+    }
+    updateAttemptsInfo();
   }
-  updateScore();
-  checkBtn.textContent = 'Next';
 
+  // cleanup visuals after short time
   setTimeout(()=> {
     bunny.classList.remove('jump','sadShake');
     bunnyWrap.classList.remove('bunny-happy-glow','bunny-sad-dim');
     scoreEl.classList.remove('scorePulse');
-    disableChoices(false);
   }, 700);
 }
 
 function updateScore(){ scoreEl.textContent = `Score: ${score}`; }
 
 function setBunny(src){
-  // defensive: try to load and fallback to neutral if image 404
   const img = new Image();
   img.onload = ()=> { bunny.src = src; };
   img.onerror = ()=> {
     console.warn('Failed to load bunny asset:', src);
-    // if neutral exists, use it, otherwise remove src
-    if(!src.endsWith('bunny-neutral.png')){
-      setBunny('assets/bunny-neutral.png');
-    } else {
-      bunny.removeAttribute('src');
-    }
+    if(!src.endsWith('bunny-neutral.png')) setBunny('assets/bunny-neutral.png');
+    else bunny.removeAttribute('src');
   };
   img.src = src;
+}
+
+function updateAttemptsInfo(){
+  if(typeof attemptsLeft === 'number'){
+    attemptsInfo.textContent = `Attempts left: ${attemptsLeft}`;
+  } else {
+    attemptsInfo.textContent = '';
+  }
 }
 
 function disableChoices(dis){
