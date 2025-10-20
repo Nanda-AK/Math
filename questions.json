@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "question": "A toy costs ₹400. It is sold at a 10% discount. What is the selling price?",
+    "options": {
+      "A": "₹360",
+      "B": "₹380",
+      "C": "₹390",
+      "D": "₹350"
+    },
+    "correct_option": "A",
+    "explanation": "10% of 400 = 40; Selling price = 400 - 40 = 360."
+  },
+  {
+    "id": 2,
+    "question": "A student scored 45 marks out of 50. What percentage did he get?",
+    "options": {
+      "A": "80%",
+      "B": "85%",
+      "C": "90%",
+      "D": "95%"
+    },
+    "correct_option": "C",
+    "explanation": "(45 ÷ 50) × 100 = 90%."
+  },
+  {
+    "id": 3,
+    "question": "The price of a book increased from ₹200 to ₹250. What is the percentage increase?",
+    "options": {
+      "A": "20%",
+      "B": "25%",
+      "C": "30%",
+      "D": "35%"
+    },
+    "correct_option": "B",
+    "explanation": "Increase = 50; (50 ÷ 200) × 100 = 25%."
+  },
+  {
+    "id": 4,
+    "question": "A pair of shoes costs ₹1200 after a 20% discount. What was its original price?",
+    "options": {
+      "A": "₹1000",
+      "B": "₹1400",
+      "C": "₹1500",
+      "D": "₹1600"
+    },
+    "correct_option": "C",
+    "explanation": "80% of original = 1200; Original = 1200 ÷ 0.8 = 1500."
+  },
+  {
+    "id": 5,
+    "question": "A man saves 30% of his income. If he earns ₹20,000, how much does he save?",
+    "options": {
+      "A": "₹4000",
+      "B": "₹5000",
+      "C": "₹6000",
+      "D": "₹7000"
+    },
+    "correct_option": "C",
+    "explanation": "30% of 20,000 = 6000."
+  },
+  {
+    "id": 6,
+    "question": "A bag was sold for ₹540 after a 10% loss. What was its cost price?",
+    "options": {
+      "A": "₹500",
+      "B": "₹550",
+      "C": "₹580",
+      "D": "₹600"
+    },
+    "correct_option": "D",
+    "explanation": "90% of cost price = 540; Cost price = 540 ÷ 0.9 = 600."
+  },
+  {
+    "id": 7,
+    "question": "The population of a village increased from 5000 to 5500. What is the percentage increase?",
+    "options": {
+      "A": "5%",
+      "B": "8%",
+      "C": "10%",
+      "D": "12%"
+    },
+    "correct_option": "C",
+    "explanation": "Increase = 500; (500 ÷ 5000) × 100 = 10%."
+  },
+  {
+    "id": 8,
+    "question": "A shopkeeper marked an item at ₹800 and gave a 15% discount. Find the selling price.",
+    "options": {
+      "A": "₹650",
+      "B": "₹660",
+      "C": "₹680",
+      "D": "₹700"
+    },
+    "correct_option": "C",
+    "explanation": "15% of 800 = 120; Selling price = 800 - 120 = 680."
+  },
+  {
+    "id": 9,
+    "question": "A student answered 36 questions correctly out of 40. What percent did he score?",
+    "options": {
+      "A": "80%",
+      "B": "85%",
+      "C": "90%",
+      "D": "95%"
+    },
+    "correct_option": "C",
+    "explanation": "(36 ÷ 40) × 100 = 90%."
+  },
+  {
+    "id": 10,
+    "question": "A fruit seller bought apples for ₹600 and sold them for ₹750. What is his profit percentage?",
+    "options": {
+      "A": "15%",
+      "B": "20%",
+      "C": "25%",
+      "D": "30%"
+    },
+    "correct_option": "C",
+    "explanation": "Profit = 150; (150 ÷ 600) × 100 = 25%."
+  },
+  {
+    "id": 11,
+    "question": "The price of sugar decreased from ₹50 per kg to ₹40 per kg. What is the percentage decrease?",
+    "options": {
+      "A": "10%",
+      "B": "15%",
+      "C": "20%",
+      "D": "25%"
+    },
+    "correct_option": "C",
+    "explanation": "Decrease = 10; (10 ÷ 50) × 100 = 20%."
+  },
+  {
+    "id": 12,
+    "question": "A student got 72 marks out of 80. What percent did she score?",
+    "options": {
+      "A": "85%",
+      "B": "88%",
+      "C": "90%",
+      "D": "92%"
+    },
+    "correct_option": "C",
+    "explanation": "(72 ÷ 80) × 100 = 90%."
+  },
+  {
+    "id": 13,
+    "question": "The cost of a laptop increased from ₹40,000 to ₹46,000. Find the percentage increase.",
+    "options": {
+      "A": "10%",
+      "B": "12%",
+      "C": "15%",
+      "D": "18%"
+    },
+    "correct_option": "C",
+    "explanation": "Increase = 6000; (6000 ÷ 40000) × 100 = 15%."
+  },
+  {
+    "id": 14,
+    "question": "A trader bought a watch for ₹800 and sold it at a 25% profit. Find the selling price.",
+    "options": {
+      "A": "₹900",
+      "B": "₹950",
+      "C": "₹1000",
+      "D": "₹1050"
+    },
+    "correct_option": "C",
+    "explanation": "Profit = 25% of 800 = 200; Selling price = 800 + 200 = 1000."
+  },
+  {
+    "id": 15,
+    "question": "The value of a car fell from ₹500000 to ₹425000 in one year. What is the depreciation percentage?",
+    "options": {
+      "A": "10%",
+      "B": "12%",
+      "C": "15%",
+      "D": "20%"
+    },
+    "correct_option": "C",
+    "explanation": "Loss = 75,000; (75,000 ÷ 500,000) × 100 = 15%."
+  },
+  {
+    "id": 16,
+    "question": "In a class of 60 students, 45 passed an exam. What percentage passed?",
+    "options": {
+      "A": "65%",
+      "B": "70%",
+      "C": "75%",
+      "D": "80%"
+    },
+    "correct_option": "C",
+    "explanation": "(45 ÷ 60) × 100 = 75%."
+  },
+  {
+    "id": 17,
+    "question": "A mobile is sold for ₹9,000 after a 10% discount. Find its marked price.",
+    "options": {
+      "A": "₹9,500",
+      "B": "₹10,000",
+      "C": "₹10,500",
+      "D": "₹11,000"
+    },
+    "correct_option": "B",
+    "explanation": "90% of marked price = 9000; Marked price = 9000 ÷ 0.9 = 10,000."
+  },
+  {
+    "id": 18,
+    "question": "The price of petrol increased from ₹100 to ₹120 per liter. Find the percent increase.",
+    "options": {
+      "A": "10%",
+      "B": "15%",
+      "C": "20%",
+      "D": "25%"
+    },
+    "correct_option": "C",
+    "explanation": "Increase = 20; (20 ÷ 100) × 100 = 20%."
+  },
+  {
+    "id": 19,
+    "question": "A store announced a 40% discount on shoes. If a pair costs ₹1500, what is the sale price?",
+    "options": {
+      "A": "₹800",
+      "B": "₹850",
+      "C": "₹900",
+      "D": "₹1000"
+    },
+    "correct_option": "C",
+    "explanation": "40% of 1500 = 600; Sale price = 1500 - 600 = 900."
+  },
+  {
+    "id": 20,
+    "question": "A number was increased by 25% to get 100. What was the original number?",
+    "options": {
+      "A": "75",
+      "B": "80",
+      "C": "85",
+      "D": "90"
+    },
+    "correct_option": "B",
+    "explanation": "125% of original = 100; Original = 100 ÷ 1.25 = 80."
+  }
+]
