@@ -1,26 +1,39 @@
-<!-- index.html -->
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Mini Quiz</title>
+<title>Mini Quiz — Bunny Edition</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header><div id="score">Score: 0</div></header>
+  <header>
+    <div id="score">Score: 0</div>
+  </header>
+
   <main>
-    <div class="card" id="questionCard">
-      <h2 id="question">What is 2 + 2?</h2>
-      <div class="choices">
-        <button class="choice">3</button>
-        <button class="choice">4</button>
-        <button class="choice">5</button>
-        <button class="choice">22</button>
+    <div class="layout">
+      <div class="left">
+        <div class="card" id="questionCard">
+          <h2 id="question">What is 2 + 2?</h2>
+          <div class="choices">
+            <button class="choice">3</button>
+            <button class="choice">4</button>
+            <button class="choice">5</button>
+            <button class="choice">22</button>
+          </div>
+          <div id="feedback" aria-live="polite"></div>
+        </div>
       </div>
-      <div id="feedback" aria-live="polite"></div>
+
+      <aside class="right">
+        <div class="bunny-wrap" id="bunnyWrap">
+          <img id="bunny" src="assets/bunny-neutral.png" alt="bunny">
+        </div>
+      </aside>
     </div>
   </main>
+
 <script src="app.js"></script>
 </body>
 </html>
