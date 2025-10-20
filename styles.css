@@ -1,55 +1,33 @@
 :root{
-  --good:#28a745;
-  --bad:#dc3545;
-  --bg:#f6f8fa;
-  --card:#ffffff;
+  --good:#28a745; --bad:#dc3545; --bg:#f6f8fa; --card:#fff;
 }
 *{box-sizing:border-box}
-body{
-  font-family:system-ui,Segoe UI,Arial;
-  background:var(--bg);
-  margin:0;padding:20px;color:#111;
-}
+body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);margin:0;padding:20px;color:#111}
 header{display:flex;justify-content:flex-end;margin-bottom:12px}
 #score{font-weight:700;padding:6px 10px;border-radius:8px;background:#fff;box-shadow:0 4px 8px rgba(0,0,0,.04)}
 .layout{display:flex;gap:20px;align-items:flex-start;max-width:980px;margin:0 auto}
 .left{flex:1}
 .right{width:320px;display:flex;align-items:center;justify-content:center}
-.card{
-  padding:20px;background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06);
-}
+.card{padding:20px;background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .choice{padding:12px;border-radius:8px;border:1px solid #ddd;background:#fafafa;cursor:pointer;font-weight:600}
-.choice:active{transform:scale(.99)}
-#feedback{margin-top:12px;min-height:20px;font-size:0.95rem}
+.choice[aria-checked="true"]{outline:3px solid #cce5ff}
+.choice[disabled]{opacity:.5;pointer-events:none}
+.controls{display:flex;gap:10px;margin-top:14px}
+.primary{background:#005fcc;color:#fff;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.primary[disabled]{opacity:.5;cursor:default}
+.secondary{background:#fff;padding:10px 14px;border-radius:8px;border:1px solid #ddd;cursor:pointer}
+.feedback{margin-top:12px;min-height:22px;font-weight:600}
+.explanation{margin-top:6px;color:#444;font-size:.95rem}
 
 /* Bunny area */
 .bunny-wrap{width:260px;height:260px;background:linear-gradient(#fff,#f8fbff);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.06);position:relative;overflow:hidden}
 .bunny-wrap img{max-width:84%;max-height:84%;transition:transform .35s ease, filter .25s ease}
-
-/* happy jump */
 .jump{animation:jumpAnim .7s cubic-bezier(.2,.9,.2,1)}
-@keyframes jumpAnim{
-  0%{transform:translateY(0)}
-  35%{transform:translateY(-40px) scale(1.03)}
-  70%{transform:translateY(0)}
-  100%{transform:translateY(0)}
-}
-
-/* shake for sad */
+@keyframes jumpAnim{0%{transform:translateY(0)}35%{transform:translateY(-40px) scale(1.03)}70%{transform:translateY(0)}100%{transform:translateY(0)}}
 .sadShake{animation:sadShake .6s}
-@keyframes sadShake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-8px)}
-  50%{transform:translateX(8px)}
-  75%{transform:translateX(-6px)}
-  100%{transform:translateX(0)}
-}
-
-/* score pulse */
+@keyframes sadShake{0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-6px)}100%{transform:translateX(0)}}
 .scorePulse{animation:scorePulse .6s}
 @keyframes scorePulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
-
-/* visual cues (optional) */
 .bunny-happy-glow{box-shadow:0 12px 30px rgba(40,167,69,.12)}
 .bunny-sad-dim{filter:grayscale(.4) brightness(.85)}
