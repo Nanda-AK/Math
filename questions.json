@@ -9,7 +9,15 @@
       "D": "₹350"
     },
     "correct_option": "A",
-    "explanation": "10% of 400 = 40; Selling price = 400 - 40 = 360."
+    "explanation": "10% of 400 = 40; Selling price = 400 - 40 = 360.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 2,
@@ -21,7 +29,15 @@
       "D": "95%"
     },
     "correct_option": "C",
-    "explanation": "(45 ÷ 50) × 100 = 90%."
+    "explanation": "(45 ÷ 50) × 100 = 90%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 3,
@@ -33,7 +49,15 @@
       "D": "35%"
     },
     "correct_option": "B",
-    "explanation": "Increase = 50; (50 ÷ 200) × 100 = 25%."
+    "explanation": "Increase = 50; (50 ÷ 200) × 100 = 25%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 4,
@@ -45,7 +69,15 @@
       "D": "₹1600"
     },
     "correct_option": "C",
-    "explanation": "80% of original = 1200; Original = 1200 ÷ 0.8 = 1500."
+    "explanation": "80% of original = 1200; Original = 1200 ÷ 0.8 = 1500.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 5,
@@ -57,7 +89,15 @@
       "D": "₹7000"
     },
     "correct_option": "C",
-    "explanation": "30% of 20,000 = 6000."
+    "explanation": "30% of 20,000 = 6000.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 6,
@@ -69,7 +109,15 @@
       "D": "₹600"
     },
     "correct_option": "D",
-    "explanation": "90% of cost price = 540; Cost price = 540 ÷ 0.9 = 600."
+    "explanation": "90% of cost price = 540; Cost price = 540 ÷ 0.9 = 600.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 7,
@@ -81,7 +129,15 @@
       "D": "12%"
     },
     "correct_option": "C",
-    "explanation": "Increase = 500; (500 ÷ 5000) × 100 = 10%."
+    "explanation": "Increase = 500; (500 ÷ 5000) × 100 = 10%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 8,
@@ -93,7 +149,15 @@
       "D": "₹700"
     },
     "correct_option": "C",
-    "explanation": "15% of 800 = 120; Selling price = 800 - 120 = 680."
+    "explanation": "15% of 800 = 120; Selling price = 800 - 120 = 680.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 9,
@@ -105,7 +169,15 @@
       "D": "95%"
     },
     "correct_option": "C",
-    "explanation": "(36 ÷ 40) × 100 = 90%."
+    "explanation": "(36 ÷ 40) × 100 = 90%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 10,
@@ -117,7 +189,15 @@
       "D": "30%"
     },
     "correct_option": "C",
-    "explanation": "Profit = 150; (150 ÷ 600) × 100 = 25%."
+    "explanation": "Profit = 150; (150 ÷ 600) × 100 = 25%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 11,
@@ -129,7 +209,15 @@
       "D": "25%"
     },
     "correct_option": "C",
-    "explanation": "Decrease = 10; (10 ÷ 50) × 100 = 20%."
+    "explanation": "Decrease = 10; (10 ÷ 50) × 100 = 20%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 12,
@@ -141,7 +229,15 @@
       "D": "92%"
     },
     "correct_option": "C",
-    "explanation": "(72 ÷ 80) × 100 = 90%."
+    "explanation": "(72 ÷ 80) × 100 = 90%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 13,
@@ -153,7 +249,15 @@
       "D": "18%"
     },
     "correct_option": "C",
-    "explanation": "Increase = 6000; (6000 ÷ 40000) × 100 = 15%."
+    "explanation": "Increase = 6000; (6000 ÷ 40000) × 100 = 15%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 14,
@@ -165,7 +269,15 @@
       "D": "₹1050"
     },
     "correct_option": "C",
-    "explanation": "Profit = 25% of 800 = 200; Selling price = 800 + 200 = 1000."
+    "explanation": "Profit = 25% of 800 = 200; Selling price = 800 + 200 = 1000.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 15,
@@ -177,7 +289,15 @@
       "D": "20%"
     },
     "correct_option": "C",
-    "explanation": "Loss = 75,000; (75,000 ÷ 500,000) × 100 = 15%."
+    "explanation": "Loss = 75,000; (75,000 ÷ 500,000) × 100 = 15%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 16,
@@ -189,7 +309,15 @@
       "D": "80%"
     },
     "correct_option": "C",
-    "explanation": "(45 ÷ 60) × 100 = 75%."
+    "explanation": "(45 ÷ 60) × 100 = 75%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 17,
@@ -201,7 +329,15 @@
       "D": "₹11,000"
     },
     "correct_option": "B",
-    "explanation": "90% of marked price = 9000; Marked price = 9000 ÷ 0.9 = 10,000."
+    "explanation": "90% of marked price = 9000; Marked price = 9000 ÷ 0.9 = 10,000.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 18,
@@ -213,7 +349,15 @@
       "D": "25%"
     },
     "correct_option": "C",
-    "explanation": "Increase = 20; (20 ÷ 100) × 100 = 20%."
+    "explanation": "Increase = 20; (20 ÷ 100) × 100 = 20%.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 19,
@@ -225,7 +369,15 @@
       "D": "₹1000"
     },
     "correct_option": "C",
-    "explanation": "40% of 1500 = 600; Sale price = 1500 - 600 = 900."
+    "explanation": "40% of 1500 = 600; Sale price = 1500 - 600 = 900.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   },
   {
     "id": 20,
@@ -237,6 +389,14 @@
       "D": "90"
     },
     "correct_option": "B",
-    "explanation": "125% of original = 100; Original = 100 ÷ 1.25 = 80."
+    "explanation": "125% of original = 100; Original = 100 ÷ 1.25 = 80.",
+    "difficulty_level": "easy",
+    "recommended_age_range": "10-13",
+    "points": 10,
+    "category": "Percentage",
+    "hint": "Think about how percentages are calculated.",
+    "time_limit_seconds": 30,
+    "attempts_allowed": 2,
+    "learning_outcome": "Understand and apply percentage calculations."
   }
 ]
