@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Quiz — Bunny Edition (Multiple Questions)</title>
+<title>Quiz — Bunny Edition (Hints + Attempts)</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,11 +20,13 @@
 
           <div class="controls">
             <button id="skipBtn" class="secondary">Skip</button>
+            <button id="hintBtn" class="secondary" disabled>Hint</button>
             <button id="checkBtn" class="primary" disabled>Check answer</button>
           </div>
 
           <div id="feedback" class="feedback" aria-live="polite"></div>
           <div id="explanation" class="explanation"></div>
+          <div id="attemptsInfo" class="attempts-info"></div>
         </div>
       </div>
 
